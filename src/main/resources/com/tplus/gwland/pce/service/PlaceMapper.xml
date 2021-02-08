@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.pce.service.PlaceMapper">
+	<insert id="insert" parameterType="com.example.demo.pce.service.Place">
+		insert into places(name,address,phone_number,category,city,place_img)
+		values(#{name},#{address},#{phoneNumber},#{category},#{city},#{placeImg})
+	</insert>
+	<select id="count" resultType="int">
+		select count(*) from places;
+	</select>
+	<select id="list" resultType="com.example.demo.pce.service.Place">
+		select pce_num pceNum,name,address,phone_number phoneNumber,category,city,place_img placeImg
+		from places;
+	</select>
+	<select id="select" resultType="com.example.demo.pce.service.Place">
+		select pce_num pceNum,name,address,phone_number phoneNumber,category,city,place_img placeImg
+		from places
+		where pce_num like #{pceNum};
+	</select>
+	<update id="update" >
+		update places
+		set name=#{name},
+			address=#{address},
+			phone_number=#{phoneNumber},
+			category=#{category},
+			city=#{city}
+		where pce_num like #{pceNum};
+	</update>
+	<delete id="delete" parameterType="com.example.demo.pce.service.Place">
+		delete from places
+		where #{pceNum} like pce_Num
+	</delete>
+</mapper>
